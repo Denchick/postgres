@@ -422,6 +422,7 @@ WalReceiverMain(void)
 				{
 					got_SIGHUP = false;
 					ProcessConfigFile(PGC_SIGHUP);
+					elog(LOG);
 					XLogWalRcvSendHSFeedback(true);
 				}
 
