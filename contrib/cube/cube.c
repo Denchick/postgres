@@ -106,6 +106,7 @@ bool		g_cube_internal_consistent(NDBOX *key, NDBOX *query, StrategyNumber strate
 */
 static double distance_1D(double a1, double a2, double b1, double b2);
 static bool cube_is_point_internal(NDBOX *cube);
+static int callCount = 0;
 
 
 /*****************************************************************************
@@ -1450,6 +1451,9 @@ g_cube_distance(PG_FUNCTION_ARGS)
 	StrategyNumber strategy = (StrategyNumber) PG_GETARG_UINT16(2);
 	NDBOX	   *cube = DatumGetNDBOX(entry->key);
 	double		retval;
+
+
+    elog(NOTICE,"%d",callCount++);
 
 	if (strategy == CubeKNNDistanceCoord)
 	{
